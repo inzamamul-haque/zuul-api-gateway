@@ -1,0 +1,24 @@
+server:
+  port: 8075
+
+spring:
+  application:
+    name: zuul-api-gateway
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+zuul:
+  prefix: /gateway
+  routes:
+    microservice-1:
+      path: /api/v1/**
+      serviceId: MICROSERVICE-1
+    microservice-2:
+      path: /api/v2/**
+      serviceId: MICROSERVICE-2
+
